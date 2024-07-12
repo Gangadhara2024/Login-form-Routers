@@ -1,0 +1,36 @@
+html,
+body {
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+}
+
+.home-navbar {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 3px 20px;
+  background-color: rgb(255, 247, 238);
+  position: sticky;
+  top: 0px;
+  z-index: 1;
+  gap: 40px;
+}
+
+.homediv {
+  background-color: rgb(255, 244, 244);
+  height: 100vh;
+  margin: auto;
+  display: grid;
+  grid-template-columns: 5fr 8fr;
+  box-sizing: border-box;
+  .left {
+    height: 100%;
+    overflow: scroll;
+  }
+  .right {
+    background-color: rgb(247, 251, 255);
+    height: 100%;
+    overflow: scroll;
+  }
+}

@@ -11,6 +11,7 @@ const Postslice = createSlice({
       apiStatus: "init",
       PostData: [],
     },
+    modalApiStatus: "init",
   },
   reducers: {
     updateuserInfo: (state, action) => {
@@ -28,7 +29,14 @@ const Postslice = createSlice({
       }
       state.postInfo.apiStatus = apiStatus;
     },
+    updateModalInfo: (state, action) => {
+      state.modalApiStatus = action.payload;
+    },
+    Addfront: (state, action) => {
+      state.postInfo.PostData.unshift(action.payload);
+    },
   },
 });
-export const { updateuserInfo, updatepostInfo } = Postslice.actions;
+export const { updateuserInfo, updatepostInfo, updateModalInfo, Addfront } =
+  Postslice.actions;
 export default Postslice;

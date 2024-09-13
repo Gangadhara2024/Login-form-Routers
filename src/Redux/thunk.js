@@ -1,7 +1,11 @@
 import { Endpoints } from "../network/Endpoints";
 import { Request } from "../network/Request";
-import { updatepostInfo, updateuserInfo } from "./Postslice";
-import axios from "axios";
+import {
+  Addfront,
+  updateModalInfo,
+  updatepostInfo,
+  updateuserInfo,
+} from "./Postslice";
 
 export const userinfoThunk = async (dispatch) => {
   dispatch(updateuserInfo({ apiStatus: "pending" }));
@@ -19,4 +23,20 @@ export const postinfoThunk = async (dispatch) => {
   };
   const { success, data } = await Request(httpData);
   dispatch(updatepostInfo({ apiStatus: success ? "success" : "error", data }));
+};
+
+export const CreatePost = (modaldata) => {
+  return async (dispatch) => {
+    dispatch(updateModalInfo("pending"));
+    const httpData = {
+      url: Endpoints.createpost,
+      method: "POST",
+      data: modaldata,
+    };
+    const { success, data } = await Request(httpData);
+    if (success) {
+      dispatch(Addfront(data.post));
+    }
+    dispatch(updateModalInfo(success ? "success" : "error", data));
+  };
 };

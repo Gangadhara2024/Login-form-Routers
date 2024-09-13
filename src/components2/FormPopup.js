@@ -1,11 +1,18 @@
 import { Form, Input, Modal, Button } from "antd";
 import React, { useState } from "react";
 import { FaPlus } from "react-icons/fa";
+import { useDispatch } from "react-redux";
+import { CreatePost } from "../Redux/thunk";
 
 export const FormPopup = ({ postdata }) => {
   const [openModal, setOpenModal] = useState(false);
+  const dispatch = useDispatch();
   const openpopup = () => {
     setOpenModal(true);
+  };
+  const modalsubmit = (modaldata) => {
+    dispatch(CreatePost(modaldata));
+    setOpenModal(false);
   };
   return (
     <div>
@@ -20,7 +27,7 @@ export const FormPopup = ({ postdata }) => {
         footer={null}
         onCancel={() => setOpenModal(false)}
       >
-        <Form>
+        <Form onFinish={modalsubmit}>
           <Form.Item
             name="title"
             label="Title"

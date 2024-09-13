@@ -13,7 +13,6 @@ export const Request = async (httpConfig) => {
         },
       }),
     });
-    // console.log(data);
     return { success: true, data: response.data };
   } catch (error) {
     console.log("userinfo", error);
